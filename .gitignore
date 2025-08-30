@@ -1,0 +1,16 @@
+# Jupyter Notebook checkpoints 
+.ipynb_checkpoints/ 
+ECHO is on.
+# Python cache 
+__pycache__/ 
+*.pyc 
+*.pyo 
+*.pyd 
+ECHO is on.
+# Virtual environment 
+venv/ 
+.env/ 
+finance_env/ 
+ECHO is on.
+# Model and pickle files (optional, if too large) 
+*.pkl 
