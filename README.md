@@ -1,36 +1,76 @@
-\# Finance Advisor Project
+# 💰 Finance Advisor Project
 
+A compact, end-to-end data science project: I built, evaluated and deployed a machine-learning model that predicts stock closing values from daily OHLCV features.  
+This repo demonstrates the full pipeline — data creation, EDA, feature engineering, model training/tuning, and deployment via FastAPI.
 
+---
 
-This project is a simple finance advisor tool using a machine learning model.
+## What this repo contains
+- Jupyter notebooks (step-by-step): EDA → features → baseline models → advanced models → hyperparameter tuning → deployment.
+- `app_fastapi.py` — FastAPI app that loads the saved model and serves `/predict` endpoints.
+- `best_gb_model.pkl` — final tuned Gradient Boosting model (used for the API).
+- `requirements.txt` — Python packages needed to run the project.
 
+---
 
+## Quick start (run locally)
 
-\## Features
+1. Clone:
+```bash
+git clone https://github.com/shahraju/finance_advisor_project.git
+cd finance_advisor_project
+```
 
-\- Train and save Gradient Boosting model
+2. Create & activate a virtual env, then install:
+```bash
+python -m venv finance_env
+finance_env\Scripts\activate     # Windows
+pip install -r requirements.txt
+```
 
-\- REST API built with FastAPI
+3. Run the API:
+```bash
+uvicorn app_fastapi:app --reload --port 8000
+```
 
-\- `/predict` endpoint to get stock price predictions
+4. Open Swagger UI:  
+👉 http://127.0.0.1:8000/docs
 
+---
 
+## Example request (POST `/predict`)
+```json
+{
+  "open": 100.5,
+  "high": 105.2,
+  "low": 98.7,
+  "volume": 50000
+}
+```
 
-\## How to Run
+Response:
+```json
+{ "prediction": 101.23 }
+```
 
-1\. Create and activate virtual environment (already done with `finance\_env`).
+---
 
-2\. Install dependencies:
+## Short project notes & highlights
+- **Dataset:** synthetic OHLCV stock-like series created for the project (not real market data).  
+- **Models tried:** Linear Regression, Decision Tree, Random Forest, Gradient Boosting.  
+- **Final pick:** Gradient Boosting (tuned) — best test performance (example: MSE ≈ 0.21, R² ≈ 0.98).  
+- **Why this is useful:** shows end-to-end pipeline skills: data work, model selection/tuning, and real deployment.
 
-&nbsp;  ```bash
+---
 
-&nbsp;  pip install -r requirements.txt
+## Next steps (ideas)
+- Replace synthetic data with real market data (Kaggle / Alpha Vantage).  
+- Add a lightweight frontend (Streamlit) to allow non-technical users to query the model.  
+- Deploy the API to Render/Railway with a public URL and add CI to automatically redeploy on changes.
 
+---
 
-
-uvicorn app\_fastapi:app --reload --port 8000
-
-
-
-http://127.0.0.1:8000/docs
-
+## Author
+**Raju Shah**  
+✉️ shahraju2434@gmail.com  
+LinkedIn: [Your LinkedIn URL here]
